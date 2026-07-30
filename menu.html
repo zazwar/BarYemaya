@@ -1,0 +1,401 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Menú — Bar Yemayá</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --primary: #6366f1;
+      --secondary: #f59e0b;
+      --bg: #0f0f1a;
+      --bg2: #1a1a2e;
+      --bg3: #16213e;
+      --card: #1e1e3a;
+      --card-hover: #252550;
+      --text: #f1f5f9;
+      --muted: #94a3b8;
+      --border: rgba(99,102,241,0.15);
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Segoe UI', system-ui, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      min-height: 100vh;
+    }
+
+    /* ── HERO ── */
+    .hero {
+      background: linear-gradient(135deg, #0f0f1a 0%, #1a1a2e 40%, #0d1b3e 100%);
+      border-bottom: 1px solid var(--border);
+      padding: 3.5rem 1.5rem 2.5rem;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .hero::before {
+      content: '';
+      position: absolute; inset: 0;
+      background: radial-gradient(ellipse 80% 60% at 50% 0%, rgba(99,102,241,0.12) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    .hero-badge {
+      display: inline-flex; align-items: center; gap: 0.5rem;
+      background: rgba(99,102,241,0.15);
+      border: 1px solid rgba(99,102,241,0.3);
+      color: #a5b4fc;
+      border-radius: 2rem; padding: 0.35rem 1rem;
+      font-size: 0.78rem; font-weight: 600; letter-spacing: 0.08em;
+      text-transform: uppercase; margin-bottom: 1.2rem;
+    }
+    .hero h1 {
+      font-size: clamp(2.2rem, 6vw, 3.8rem);
+      font-weight: 800; line-height: 1.1;
+      background: linear-gradient(135deg, #fff 30%, #a5b4fc 70%, var(--secondary) 100%);
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+      background-clip: text; margin-bottom: 0.8rem;
+    }
+    .hero-sub {
+      font-size: 1.05rem; color: var(--muted);
+      max-width: 480px; margin: 0 auto 1.8rem;
+      line-height: 1.6;
+    }
+    .hero-info {
+      display: flex; justify-content: center; flex-wrap: wrap;
+      gap: 1.5rem; font-size: 0.88rem; color: var(--muted);
+    }
+    .hero-info span { display: flex; align-items: center; gap: 0.4rem; }
+
+
+    /* ── NAV STICKY ── */
+    .nav-bar {
+      position: sticky; top: 0; z-index: 100;
+      background: rgba(15,15,26,0.92);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+      padding: 0.6rem 1rem;
+      display: flex; gap: 0.5rem; overflow-x: auto;
+      scrollbar-width: none;
+    }
+    .nav-bar::-webkit-scrollbar { display: none; }
+    .nav-btn {
+      flex-shrink: 0;
+      background: rgba(255,255,255,0.05);
+      border: 1px solid var(--border);
+      color: var(--muted);
+      border-radius: 2rem; padding: 0.4rem 0.9rem;
+      font-size: 0.82rem; font-weight: 600; cursor: pointer;
+      transition: all 0.2s; white-space: nowrap;
+      text-decoration: none; display: inline-flex; align-items: center; gap: 0.35rem;
+    }
+    .nav-btn:hover, .nav-btn.active {
+      background: var(--primary); color: #fff;
+      border-color: var(--primary);
+    }
+
+    /* ── LAYOUT ── */
+    .container { max-width: 1100px; margin: 0 auto; padding: 2.5rem 1.25rem 4rem; }
+
+    /* ── SECCIÓN CATEGORÍA ── */
+    .category-section { margin-bottom: 3.5rem; }
+    .cat-header {
+      display: flex; align-items: center; gap: 0.85rem;
+      margin-bottom: 1.4rem; padding-bottom: 0.9rem;
+      border-bottom: 2px solid;
+    }
+    .cat-icon {
+      width: 2.6rem; height: 2.6rem;
+      border-radius: 0.75rem;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.3rem; flex-shrink: 0;
+    }
+    .cat-title { font-size: 1.45rem; font-weight: 700; }
+    .cat-count {
+      margin-left: auto; font-size: 0.78rem; font-weight: 600;
+      background: rgba(255,255,255,0.07);
+      border-radius: 1rem; padding: 0.2rem 0.7rem; color: var(--muted);
+    }
+
+
+    /* ── GRID DE PRODUCTOS ── */
+    .products-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(195px, 1fr));
+      gap: 0.9rem;
+    }
+    .product-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 1rem;
+      padding: 1.1rem 1rem 0.9rem;
+      display: flex; flex-direction: column; gap: 0.4rem;
+      transition: transform 0.18s, background 0.18s, box-shadow 0.18s;
+      position: relative; overflow: hidden;
+    }
+    .product-card::before {
+      content: '';
+      position: absolute; top: 0; left: 0; right: 0; height: 2px;
+      opacity: 0; transition: opacity 0.2s;
+    }
+    .product-card:hover {
+      background: var(--card-hover);
+      transform: translateY(-2px);
+      box-shadow: 0 8px 24px rgba(0,0,0,0.35);
+    }
+    .product-card:hover::before { opacity: 1; }
+    .prod-emoji { font-size: 1.5rem; line-height: 1; margin-bottom: 0.2rem; }
+    .prod-name { font-size: 0.92rem; font-weight: 700; line-height: 1.3; color: var(--text); }
+    .prod-desc { font-size: 0.75rem; color: var(--muted); line-height: 1.4; flex: 1; }
+    .prod-price {
+      font-size: 1.05rem; font-weight: 800;
+      margin-top: 0.4rem;
+    }
+
+    /* ── FOOTER ── */
+    .footer {
+      text-align: center; padding: 2rem 1rem;
+      border-top: 1px solid var(--border);
+      color: var(--muted); font-size: 0.82rem;
+    }
+    .footer a { color: #a5b4fc; text-decoration: none; }
+    .footer a:hover { text-decoration: underline; }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 480px) {
+      .products-grid { grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 0.65rem; }
+      .cat-title { font-size: 1.2rem; }
+    }
+  </style>
+</head>
+<body>
+
+
+<!-- HERO -->
+<header class="hero">
+  <div class="hero-badge">🌊 Bar Yemayá · Nicaragua</div>
+  <h1>Nuestro Menú</h1>
+  <p class="hero-sub">Precios en córdobas nicaragüenses (C$). Consulta disponibilidad con tu mesero.</p>
+  <div class="hero-info">
+    <span>📍 León, Nicaragua</span>
+    <span>📞 2313-1368</span>
+    <span>🗺️ Gasolinera UNO Sutiaba 1 y ½ cuadras al sur</span>
+    <span>🕐 Abierto todos los días</span>
+  </div>
+</header>
+
+<!-- NAV CATEGORÍAS -->
+<nav class="nav-bar" id="nav-bar"></nav>
+
+<!-- CONTENIDO -->
+<main class="container" id="menu-container"></main>
+
+<footer class="footer">
+  <p>© 2026 Bar Yemayá · Precios sujetos a cambio sin previo aviso</p>
+  <p style="margin-top:0.4rem">Generado con <a href="https://github.com/alvaroAGomez/restaurantePOS" target="_blank">RestaurantePOS</a></p>
+</footer>
+
+<script>
+const MENU = [
+  {
+    "id": 44, "name": "Entradas", "color": "#e11d48", "icon": "🥗",
+    "products": [
+      {"name":"Papas Fritas","price":85},{"name":"Maduro Q","price":60},
+      {"name":"Toston C/Queso","price":60},{"name":"Toston Mixto","price":65},
+      {"name":"Toston C/Carne","price":85},{"name":"Orden de Adobado","price":120},
+      {"name":"Orden de Chorizo","price":130},{"name":"Boca Individual","price":60},
+      {"name":"Boca de Adobado","price":70},{"name":"Repocheta","price":50},
+      {"name":"Taco","price":50},{"name":"Ensalada de Vegetales","price":85},
+      {"name":"Ensalada Especial","price":130},{"name":"Ceviche de Camaron","price":120},
+      {"name":"Ceviche de Concha","price":120},{"name":"Cev Camaron Grande","price":185},
+      {"name":"Cev Concha Grande","price":185},{"name":"3 Huevo Paslama","price":65},
+      {"name":"1/2 Doc Huevo Paslama","price":110},{"name":"Extra de Frijoles con Tostones","price":70},
+      {"name":"Extra de Queso","price":35},{"name":"Extra Queso Frito","price":45},
+      {"name":"Extra de Tortilla","price":8},{"name":"Extra Galleta","price":12},
+      {"name":"Extra de Huevo","price":40},{"name":"Extra de Yuca","price":35},
+      {"name":"Extra Tostones","price":45},{"name":"Extra de Arroz","price":35},
+      {"name":"Extra Gallo Pinto","price":40},{"name":"Extra de Salsa","price":35},
+      {"name":"Extra de Chile","price":15},{"name":"Extra Limones","price":30},
+      {"name":"Empaque P/Papas Fritas","price":8},{"name":"Empaque","price":12}
+    ]
+  },
+  {
+    "id": 45, "name": "Comidas", "color": "#f59e0b", "icon": "🍽️",
+    "products": [
+      {"name":"Mini Variado","price":195},{"name":"Variado Peq","price":310},
+      {"name":"Variado Mediano","price":395},{"name":"Variado Grande","price":495},
+      {"name":"Variado Familiar","price":626},{"name":"Variado Especial Yemayá","price":836},
+      {"name":"Alitas con Tortilla","price":295},{"name":"Alitas con Toston","price":320},
+      {"name":"Alitas con Papas","price":337},{"name":"Alitas en Salsa Picante","price":375},
+      {"name":"Alitas en Salsa BBQ","price":375},{"name":"Alitas en 3 Salsas","price":505},
+      {"name":"1/4 de Pollo","price":305},{"name":"1/2 de Pollo","price":437},
+      {"name":"Antojo Nica","price":395},{"name":"Bistec","price":337,"desc":"De Pollo, Res o Cerdo"},
+      {"name":"Churrasco","price":360},{"name":"Mini Brochetas","price":275},
+      {"name":"Fajita de Pollo","price":315},{"name":"Fajita de Pescado","price":315},
+      {"name":"Filete de Pollo","price":337},{"name":"Filete de Res","price":337},
+      {"name":"Filete de Cerdo","price":337},{"name":"Filete de Pescado","price":337},
+      {"name":"Filete Jalapeño","price":370,"desc":"De Pollo, Res o Cerdo"},
+      {"name":"Carne a la Plancha","price":410,"desc":"De Pollo, Res o Cerdo"},
+      {"name":"Camarones Empanizados","price":390},{"name":"Camarones en Salsa","price":390},
+      {"name":"Pescado Frito","price":220},{"name":"Servicio de Comida","price":158},
+      {"name":"Combito","price":148},{"name":"Empaque","price":12}
+    ]
+  },
+  {
+    "id": 50, "name": "Sopas", "color": "#827f59", "icon": "🍲",
+    "products": [
+      {"name":"Sopa de Pollo","price":120},{"name":"Sopa de Camarones","price":120},
+      {"name":"Sopa de Frijoles","price":120},{"name":"Sopa de Queso","price":155},
+      {"name":"Sopa de Res","price":155},{"name":"Sopa de Mondongo","price":155},
+      {"name":"Sopa de Pollo con Albondiga","price":160},{"name":"Sopa de Mariscos","price":170},
+      {"name":"Consume de Pollo","price":40},{"name":"Consume de Camarones","price":40},
+      {"name":"Consume de Res","price":40},{"name":"Consume de Mondongo","price":40},
+      {"name":"Consume de Frijoles","price":55},{"name":"Empaque de Sopa","price":25}
+    ]
+  },
+  {
+    "id": 46, "name": "Gaseosas", "color": "#0ea5e9", "icon": "🥤",
+    "products": [
+      {"name":"Gaseosa 12onz","price":40},{"name":"Gaseosa Ensa","price":40},
+      {"name":"Gaseosa 12onz Calle","price":35},{"name":"Gaseosa Ensa Calle","price":35},
+      {"name":"Jugo Hi-C","price":40},{"name":"Jugo Lata","price":55},
+      {"name":"Jugo del Valle","price":45},{"name":"Te Limon","price":40},
+      {"name":"Gatorade","price":60},{"name":"Powerade","price":60},
+      {"name":"Agua Purificada","price":25},{"name":"Cafe","price":30}
+    ]
+  },
+  {
+    "id": 47, "name": "Licores", "color": "#a855f7", "icon": "🥃",
+    "products": [
+      {"name":"Trago Ultra Lite","price":65},{"name":"Trago Extra Lite","price":65},
+      {"name":"Trago Gran Reserva","price":85},{"name":"Trago de Havana Club 3Años","price":90},
+      {"name":"Trago de Jose Cuervo Silver","price":90},
+      {"name":"Trago Tequila Rancho Esc.","price":120},{"name":"Trago Tequila Cerro de Oro","price":120},
+      {"name":"3 Tragos Tequila Rancho Esc.","price":330},{"name":"3 Trago Tequila Cerro de Oro","price":330},
+      {"name":"1/4 RPS","price":200},{"name":"1/2 RPS","price":375},
+      {"name":"1 Lt RPS","price":730},
+      {"name":"1/4 Extra Lite","price":200},{"name":"1/2 Extra Lite","price":375},
+      {"name":"1 Lt Extra Lite","price":730},
+      {"name":"1/4 Ultra Lite","price":200},{"name":"1/2 Ultra Lite","price":375},
+      {"name":"1 Lt Ultra Lite","price":730},
+      {"name":"1/4 Gran Reserva","price":230},{"name":"1/2 Gran Reserva","price":440},
+      {"name":"1 Lt Gran Reserva","price":860},
+      {"name":"Botella Tequila Cerro de Oro","price":1100},
+      {"name":"Extra Limones","price":30}
+    ]
+  },
+  {
+    "id": 49, "name": "Cervezas", "color": "#f97316", "icon": "🍺",
+    "products": [
+      {"name":"Toña 12onz","price":65},{"name":"Toña Lite 12onz","price":65},
+      {"name":"Toña Litro","price":110},{"name":"Victoria 12onz","price":65},
+      {"name":"Victoria Litro","price":110},{"name":"Frost 12onz","price":65},
+      {"name":"Frost Litro","price":110},{"name":"Lata Toña/Vic","price":80},
+      {"name":"Laton Toña/Vic","price":155},{"name":"Lata Toña Ultra","price":85},
+      {"name":"Lata Toña Chelada/Michelada","price":85},
+      {"name":"Toña/Vic 12onz Descartable","price":75},
+      {"name":"Heineken","price":85},{"name":"Miller Lite","price":85},
+      {"name":"Miller Lite X3","price":230},{"name":"Cerveza Sol","price":85},
+      {"name":"Seltzer","price":85},{"name":"Seltzer Rebel","price":85},
+      {"name":"Fusion","price":80},{"name":"Boreal","price":80},
+      {"name":"Lata Bamboo","price":80},{"name":"Laton Bamboo","price":155},
+      {"name":"Cubetazo Toña 12onz","price":570},{"name":"Cubetazo Victoria 12onz","price":570},
+      {"name":"Frost Litro X2","price":200},
+      {"name":"Promo Bamboo Laton","price":280},{"name":"Boreal X3","price":220},
+      {"name":"Victoria Hoppy","price":85},{"name":"Cubeta Hielo","price":60}
+    ]
+  },
+  {
+    "id": 51, "name": "Cigarrillos", "color": "#f28f64", "icon": "🚬",
+    "products": [
+      {"name":"1/2 Belmont","price":80},{"name":"1/2 Dunhill","price":85},
+      {"name":"1/2 LyM","price":76},{"name":"1/2 Marlboro","price":76},
+      {"name":"1/2 Pall Mall Click","price":80},{"name":"1/2 Modern","price":30},
+      {"name":"Paq Modern","price":60},{"name":"1/2 Modern Click","price":50},
+      {"name":"Paq Modern Click","price":100},{"name":"1/2 Slim","price":40},
+      {"name":"Paq Slim","price":80},{"name":"1/2 Elefante","price":30},
+      {"name":"Paq Elefante","price":60},{"name":"Paq Volcano","price":60},
+      {"name":"Cigarrillo de 10","price":10},{"name":"Cigarrillo de 8","price":8},
+      {"name":"Cigarrillo de 6","price":6},{"name":"Fosforos","price":3},
+      {"name":"Encendedor Clipper Pequeño","price":23},{"name":"Encendedor Clipper Grande","price":28}
+    ]
+  },
+];
+
+// ── Construir nav ──
+const nav = document.getElementById('nav-bar');
+MENU.forEach(cat => {
+  const a = document.createElement('a');
+  a.href = `#cat-${cat.id}`;
+  a.className = 'nav-btn';
+  a.innerHTML = `${cat.icon} ${cat.name}`;
+  a.addEventListener('click', () => {
+    document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active'));
+    a.classList.add('active');
+  });
+  nav.appendChild(a);
+});
+
+// ── Highlight nav on scroll ──
+const observer = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      const id = e.target.id;
+      document.querySelectorAll('.nav-btn').forEach(b => {
+        b.classList.toggle('active', b.getAttribute('href') === `#${id}`);
+      });
+    }
+  });
+}, { rootMargin: '-40% 0px -55% 0px' });
+
+// ── Construir menú ──
+const container = document.getElementById('menu-container');
+MENU.forEach(cat => {
+  const section = document.createElement('section');
+  section.className = 'category-section';
+  section.id = `cat-${cat.id}`;
+
+  // Header categoría
+  const hdr = document.createElement('div');
+  hdr.className = 'cat-header';
+  hdr.style.borderColor = cat.color + '55';
+  hdr.innerHTML = `
+    <div class="cat-icon" style="background:${cat.color}22; color:${cat.color}">${cat.icon}</div>
+    <span class="cat-title" style="color:${cat.color}">${cat.name}</span>
+    <span class="cat-count">${cat.products.length} items</span>
+  `;
+  section.appendChild(hdr);
+
+  // Grid productos
+  const grid = document.createElement('div');
+  grid.className = 'products-grid';
+
+  cat.products.forEach(prod => {
+    const card = document.createElement('div');
+    card.className = 'product-card';
+    card.style.setProperty('--cat-color', cat.color);
+    card.querySelector?.('::before');
+
+    // borde top coloreado via inline style en ::before — lo hacemos con box-shadow top
+    card.style.boxShadow = `inset 0 2px 0 ${cat.color}66`;
+
+    card.innerHTML = `
+      <div class="prod-name">${prod.name}</div>
+      ${prod.desc ? `<div class="prod-desc">${prod.desc}</div>` : '<div class="prod-desc"></div>'}
+      <div class="prod-price" style="color:${cat.color}">C$ ${prod.price.toLocaleString('es-NI')}</div>
+    `;
+    grid.appendChild(card);
+  });
+
+  section.appendChild(grid);
+  container.appendChild(section);
+  observer.observe(section);
+});
+
+</script>
+</body>
+</html>
