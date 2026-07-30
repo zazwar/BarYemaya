@@ -202,24 +202,76 @@
 <script>
 const MENU = [
   {
-    "id": 44, "name": "Entradas", "color": "#e11d48", "icon": "🥗",
+    "id": 49, "name": "Cervezas", "color": "#6366f1", "icon": "🍺",
     "products": [
-      {"name":"Papas Fritas","price":85},{"name":"Maduro Q","price":60},
-      {"name":"Toston C/Queso","price":60},{"name":"Toston Mixto","price":65},
-      {"name":"Toston C/Carne","price":85},{"name":"Orden de Adobado","price":120},
-      {"name":"Orden de Chorizo","price":130},{"name":"Boca Individual","price":60},
-      {"name":"Boca de Adobado","price":70},{"name":"Repocheta","price":50},
-      {"name":"Taco","price":50},{"name":"Ensalada de Vegetales","price":85},
-      {"name":"Ensalada Especial","price":130},{"name":"Ceviche de Camaron","price":120},
-      {"name":"Ceviche de Concha","price":120},{"name":"Cev Camaron Grande","price":185},
-      {"name":"Cev Concha Grande","price":185},{"name":"3 Huevo Paslama","price":65},
-      {"name":"1/2 Doc Huevo Paslama","price":110},{"name":"Extra de Frijoles con Tostones","price":70},
+      {"name":"Toña 12onz","price":45},{"name":"Toña Lite 12onz","price":45},
+      {"name":"Toña Litro","price":90},{"name":"Toña/Vic 12onz Descartable","price":49},
+      {"name":"Cubetazo Toña 12onz","price":235},
+      {"name":"Victoria 12onz","price":45},{"name":"Victoria Litro","price":90},
+      {"name":"Victoria Hoppy","price":50},{"name":"Cubetazo Victoria 12onz","price":235},
+      {"name":"Frost 12onz","price":35},{"name":"Frost Litro","price":70},
+      {"name":"Frost Litro X2","price":120},
+      {"name":"Lata Toña/Vic","price":47},{"name":"Laton Toña/Vic","price":54},
+      {"name":"Lata Toña Ultra","price":47},{"name":"Lata Toña Chelada/Michelada","price":50},
+      {"name":"Lata Bamboo","price":50},{"name":"Laton Bamboo","price":72},
+      {"name":"Promo Bamboo Laton","price":40},
+      {"name":"Heineken","price":75},{"name":"Smirnoff","price":80},
+      {"name":"Miller Lite","price":53},{"name":"Miller Lite X3","price":117},
+      {"name":"Cerveza Sol","price":70},
+      {"name":"Seltzer","price":45},{"name":"Seltzer Rebel","price":55},
+      {"name":"Boreal","price":55},{"name":"Boreal X3","price":110},
+      {"name":"Cubeta Hielo","price":10}
+    ]
+  },
+  {
+    "id": 46, "name": "Gaseosas", "color": "#3b82f6", "icon": "🥤",
+    "products": [
+      {"name":"Gaseosa 12onz","price":30},{"name":"Gaseosa 12onz Calle","price":18},
+      {"name":"Gaseosa Ensa","price":30},{"name":"Gaseosa Ensa Calle","price":20},
+      {"name":"Agua Purificada","price":30},
+      {"name":"Jugo Hi-C","price":30},{"name":"Jugo Lata","price":30},
+      {"name":"Te Limon","price":35},{"name":"Jugo del Valle","price":35},
+      {"name":"Gatorade","price":50},{"name":"Powerade","price":45},
+      {"name":"Cafe","price":30}
+    ]
+  },
+  {
+    "id": 47, "name": "Licores", "color": "#abf264", "icon": "🥃",
+    "products": [
+      {"name":"Trago Ultra Lite","price":40},{"name":"Trago Extra Lite","price":45},
+      {"name":"Trago Gran Reserva","price":55},
+      {"name":"Trago de Havana Club 3Años","price":60},
+      {"name":"Trago de Jose Cuervo Silver","price":50},
+      {"name":"Trago Tequila Rancho Esc.","price":45},{"name":"Trago Tequila Cerro de Oro","price":50},
+      {"name":"3 Tragos Tequila Rancho Esc.","price":110},{"name":"3 Trago Tequila Cerro de Oro","price":120},
+      {"name":"1/4 RPS","price":90},{"name":"1/2 RPS","price":170},{"name":"1 Lt RPS","price":330},
+      {"name":"1/4 Extra Lite","price":130},{"name":"1/2 Extra Lite","price":250},{"name":"1 Lt Extra Lite","price":560},
+      {"name":"1/4 Ultra Lite","price":120},{"name":"1/2 Ultra Lite","price":230},{"name":"1 Lt Ultra Lite","price":500},
+      {"name":"1/4 Gran Reserva","price":230},{"name":"1/2 Gran Reserva","price":450},{"name":"1 Lt Gran Reserva","price":950},
+      {"name":"Botella Tequila Cerro de Oro","price":613},
+      {"name":"Extra Limones","price":7}
+    ]
+  },
+  {
+    "id": 44, "name": "Entradas", "color": "#ef4444", "icon": "🥗",
+    "products": [
+      {"name":"Papas Fritas","price":100},{"name":"Maduro Q","price":80},
+      {"name":"Toston C/Queso","price":180},{"name":"Toston Mixto","price":180},
+      {"name":"Toston C/Carne","price":290},
+      {"name":"Orden de Adobado","price":210},{"name":"Orden de Chorizo","price":200},
+      {"name":"Ceviche de Camaron","price":100},{"name":"Ceviche de Concha","price":100},
+      {"name":"Cev Camaron Grande","price":190},{"name":"Cev Concha Grande","price":190},
+      {"name":"Ensalada de Vegetales","price":125},{"name":"Ensalada Especial","price":275},
+      {"name":"Boca Individual","price":50},{"name":"Boca de Adobado","price":62},
+      {"name":"Taco","price":75},{"name":"Repocheta","price":75},
+      {"name":"3 Huevo Paslama","price":100},{"name":"1/2 Doc Huevo Paslama","price":200},
+      {"name":"Extra de Frijoles con Tostones","price":70},
       {"name":"Extra de Queso","price":35},{"name":"Extra Queso Frito","price":45},
       {"name":"Extra de Tortilla","price":8},{"name":"Extra Galleta","price":12},
       {"name":"Extra de Huevo","price":40},{"name":"Extra de Yuca","price":35},
       {"name":"Extra Tostones","price":45},{"name":"Extra de Arroz","price":35},
       {"name":"Extra Gallo Pinto","price":40},{"name":"Extra de Salsa","price":35},
-      {"name":"Extra de Chile","price":15},{"name":"Extra Limones","price":30},
+      {"name":"Extra de Chile","price":15},
       {"name":"Empaque P/Papas Fritas","price":8},{"name":"Empaque","price":12}
     ]
   },
@@ -230,10 +282,12 @@ const MENU = [
       {"name":"Variado Mediano","price":395},{"name":"Variado Grande","price":495},
       {"name":"Variado Familiar","price":626},{"name":"Variado Especial Yemayá","price":836},
       {"name":"Alitas con Tortilla","price":295},{"name":"Alitas con Toston","price":320},
-      {"name":"Alitas con Papas","price":337},{"name":"Alitas en Salsa Picante","price":375},
-      {"name":"Alitas en Salsa BBQ","price":375},{"name":"Alitas en 3 Salsas","price":505},
+      {"name":"Alitas con Papas","price":337},
+      {"name":"Alitas en Salsa Picante","price":375},{"name":"Alitas en Salsa BBQ","price":375},
+      {"name":"Alitas en 3 Salsas","price":505},
       {"name":"1/4 de Pollo","price":305},{"name":"1/2 de Pollo","price":437},
-      {"name":"Antojo Nica","price":395},{"name":"Bistec","price":337,"desc":"De Pollo, Res o Cerdo"},
+      {"name":"Antojo Nica","price":395},
+      {"name":"Bistec","price":337,"desc":"De Pollo, Res o Cerdo"},
       {"name":"Churrasco","price":360},{"name":"Mini Brochetas","price":275},
       {"name":"Fajita de Pollo","price":315},{"name":"Fajita de Pescado","price":315},
       {"name":"Filete de Pollo","price":337},{"name":"Filete de Res","price":337},
@@ -258,72 +312,21 @@ const MENU = [
     ]
   },
   {
-    "id": 46, "name": "Gaseosas", "color": "#0ea5e9", "icon": "🥤",
-    "products": [
-      {"name":"Gaseosa 12onz","price":40},{"name":"Gaseosa Ensa","price":40},
-      {"name":"Gaseosa 12onz Calle","price":35},{"name":"Gaseosa Ensa Calle","price":35},
-      {"name":"Jugo Hi-C","price":40},{"name":"Jugo Lata","price":55},
-      {"name":"Jugo del Valle","price":45},{"name":"Te Limon","price":40},
-      {"name":"Gatorade","price":60},{"name":"Powerade","price":60},
-      {"name":"Agua Purificada","price":25},{"name":"Cafe","price":30}
-    ]
-  },
-  {
-    "id": 47, "name": "Licores", "color": "#a855f7", "icon": "🥃",
-    "products": [
-      {"name":"Trago Ultra Lite","price":65},{"name":"Trago Extra Lite","price":65},
-      {"name":"Trago Gran Reserva","price":85},{"name":"Trago de Havana Club 3Años","price":90},
-      {"name":"Trago de Jose Cuervo Silver","price":90},
-      {"name":"Trago Tequila Rancho Esc.","price":120},{"name":"Trago Tequila Cerro de Oro","price":120},
-      {"name":"3 Tragos Tequila Rancho Esc.","price":330},{"name":"3 Trago Tequila Cerro de Oro","price":330},
-      {"name":"1/4 RPS","price":200},{"name":"1/2 RPS","price":375},
-      {"name":"1 Lt RPS","price":730},
-      {"name":"1/4 Extra Lite","price":200},{"name":"1/2 Extra Lite","price":375},
-      {"name":"1 Lt Extra Lite","price":730},
-      {"name":"1/4 Ultra Lite","price":200},{"name":"1/2 Ultra Lite","price":375},
-      {"name":"1 Lt Ultra Lite","price":730},
-      {"name":"1/4 Gran Reserva","price":230},{"name":"1/2 Gran Reserva","price":440},
-      {"name":"1 Lt Gran Reserva","price":860},
-      {"name":"Botella Tequila Cerro de Oro","price":1100},
-      {"name":"Extra Limones","price":30}
-    ]
-  },
-  {
-    "id": 49, "name": "Cervezas", "color": "#f97316", "icon": "🍺",
-    "products": [
-      {"name":"Toña 12onz","price":65},{"name":"Toña Lite 12onz","price":65},
-      {"name":"Toña Litro","price":110},{"name":"Victoria 12onz","price":65},
-      {"name":"Victoria Litro","price":110},{"name":"Frost 12onz","price":65},
-      {"name":"Frost Litro","price":110},{"name":"Lata Toña/Vic","price":80},
-      {"name":"Laton Toña/Vic","price":155},{"name":"Lata Toña Ultra","price":85},
-      {"name":"Lata Toña Chelada/Michelada","price":85},
-      {"name":"Toña/Vic 12onz Descartable","price":75},
-      {"name":"Heineken","price":85},{"name":"Miller Lite","price":85},
-      {"name":"Miller Lite X3","price":230},{"name":"Cerveza Sol","price":85},
-      {"name":"Seltzer","price":85},{"name":"Seltzer Rebel","price":85},
-      {"name":"Fusion","price":80},{"name":"Boreal","price":80},
-      {"name":"Lata Bamboo","price":80},{"name":"Laton Bamboo","price":155},
-      {"name":"Cubetazo Toña 12onz","price":570},{"name":"Cubetazo Victoria 12onz","price":570},
-      {"name":"Frost Litro X2","price":200},
-      {"name":"Promo Bamboo Laton","price":280},{"name":"Boreal X3","price":220},
-      {"name":"Victoria Hoppy","price":85},{"name":"Cubeta Hielo","price":60}
-    ]
-  },
-  {
     "id": 51, "name": "Cigarrillos", "color": "#f28f64", "icon": "🚬",
     "products": [
       {"name":"1/2 Belmont","price":80},{"name":"1/2 Dunhill","price":85},
       {"name":"1/2 LyM","price":76},{"name":"1/2 Marlboro","price":76},
-      {"name":"1/2 Pall Mall Click","price":80},{"name":"1/2 Modern","price":30},
-      {"name":"Paq Modern","price":60},{"name":"1/2 Modern Click","price":50},
-      {"name":"Paq Modern Click","price":100},{"name":"1/2 Slim","price":40},
-      {"name":"Paq Slim","price":80},{"name":"1/2 Elefante","price":30},
-      {"name":"Paq Elefante","price":60},{"name":"Paq Volcano","price":60},
+      {"name":"1/2 Pall Mall Click","price":80},
+      {"name":"1/2 Modern","price":30},{"name":"Paq Modern","price":60},
+      {"name":"1/2 Modern Click","price":50},{"name":"Paq Modern Click","price":100},
+      {"name":"1/2 Slim","price":40},{"name":"Paq Slim","price":80},
+      {"name":"1/2 Elefante","price":30},{"name":"Paq Elefante","price":60},
+      {"name":"Paq Volcano","price":60},
       {"name":"Cigarrillo de 10","price":10},{"name":"Cigarrillo de 8","price":8},
       {"name":"Cigarrillo de 6","price":6},{"name":"Fosforos","price":3},
       {"name":"Encendedor Clipper Pequeño","price":23},{"name":"Encendedor Clipper Grande","price":28}
     ]
-  },
+  }
 ];
 
 // ── Construir nav ──
